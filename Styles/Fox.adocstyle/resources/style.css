@@ -1,0 +1,430 @@
+/*
+	This is the Fox css stylesheet for adoc Studio.
+	It is based on the Base.css (see info.json) stylesheet in adoc Studio.
+
+	This css file works as a supplement to the base styles.
+
+	It contains several changes to the base style:
+
+	- it resets all fonts and colors
+	- it adds new icons for the notes
+	- other minor changes (see the comments)
+
+	Author: LINIENLAND
+	Version: 1.0 from August 12, 2024
+	License: Distributed under the permissive MIT license
+*/
+
+:root {
+    --ads-headline-font: -apple-system, BlinkMacSystemFont, avenir next, avenir,
+        segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto,
+        arial, sans-serif;
+    --ads-body-font: -apple-system, BlinkMacSystemFont, avenir next, avenir,
+        segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto,
+        arial, sans-serif;
+    --ads-quote-font: Iowan Old Style, Apple Garamond, Baskerville,
+        Times New Roman, Droid Serif, Times, Source Serif Pro, serif,
+        Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+    --ads-monospaced-font: Menlo, Consolas, Monaco, Liberation Mono,
+        Lucida Console, monospace;
+    --ads-toc-font: var(--ads-body-font);
+
+    /* Set the icon weight for the admonitions:
+		400 -> outlined
+		900 -> Filled
+	*/
+    --ads-icon-font-weight: 400;
+
+    --ads-color: black; /* base color for all text */
+    --ads-color-dark: whitesmoke; /* dark variant of the base color */
+    --ads-background-color: white; /* base color for the background */
+    --ads-background-color-dark: #1e1e1e; /* dark variant of the background color */
+
+    --ads-headline-color: black; /* base color for all headline */
+    --ads-headline-color-dark: white; /* dark variant for the headlines */
+    --ads-headline-block-color: black; /* headline color for any blocks */
+    --ads-headline-block-color-dark: white; /* dark variant for the block headlines */
+    --ads-headline-small-color: black; /* color for small headlines */
+    --ads-headline-small-color-dark: white; /* dark variant for the small headlines */
+
+    --ads-mark-background-color: #ffff00; /* Text marker with the same in dark mode */
+
+    --ads-a-color: #8cb4ff; /* all kind of links */
+    --ads-a-color-dark: #8cb4ff; /* dark variant of the links */
+    // --ads-a-hover-color: #1d4b8f; /* hover variant of the links */
+    // --ads-a-hover-color-dark: #c1e1f5; /* dark variant of links hover */
+
+    --ads-single-border-color: #dddddf; /* Mainly for single lines */
+    --ads-border-color: rgb(
+        0 0 0 / 0.6
+    ); /* Light variant for some transparent borders */
+    --ads-border-color-dark: rgb(
+        255 255 255 / 0.1
+    ); /* Dark variant for all borders */
+    --ads-details-color: rgb(
+        0 0 0 / 0.85
+    ); /* Some borders needs to be less transparent */
+    --ads-details-color-dark: rgb(
+        255 255 255 / 0.85
+    ); /* dark variant of these borders */
+
+    /* Colors for syntax highlighting */
+
+    --ads-code-color: dimgray; /* For standard code and non highlighting syntax */
+    --ads-code-color-dark: silver;
+    --ads-attribute-color: blue; /* For all attributed stings */
+    --ads-attribute-color-dark: cornflowerblue;
+    --ads-code-buildin-color: purple;
+    --ads-code-buildin-color-dark: orchid;
+    --ads-comment-color: green; /* For secondary text & comments */
+    --ads-comment-color-dark: green;
+    --ads-markup-color: navy; /* For all kind of markup text */
+    --ads-markup-color-dark: cornflowerblue;
+    --ads-literal-color: blue; /* For Keywords  */
+    --ads-literal-color-dark: cornflowerblue;
+    --ads-tag-color: darkslateblue; /* For Tags & Keywords */
+    --ads-tag-color-dark: powderblue;
+    --ads-verbatim-color: dimgray; /* For Verbatim & other text */
+    --ads-verbatim-color-dark: gray;
+
+    /* Colors for tables */
+
+    --ads-table-background-color: white;
+    --ads-table-background-color-dark: #212121;
+    --ads-table-head-background-color: #f7f8f7;
+    --ads-table-head-background-color-dark: #323232;
+    --ads-table-alternate-background-color: #f8f8f7;
+    --ads-table-alternate-background-color-dark: #f8f8f7;
+    --ads-table-stripes-background-color: #f7f8f7;
+    --ads-table-stripes-background-color-dark: #323232;
+    --ads-linenotable-background-color: none;
+    --ads-linenotable-background-color-dark: none;
+
+    /* Colors for various kinds of blocks */
+
+    --ads-quote-color: rgb(0 0 0 / 0.85);
+    --ads-quote-color-dark: rgb(255 255 255 / 0.85);
+    --ads-pre-color: white;
+    --ads-pre-color-dark: #eee;
+    --ads-pre-background-color: #f7f7f8;
+    --ads-pre-background-color-dark: #7f7f7f;
+    --ads-exampleblock-background-color: white;
+    --ads-exampleblock-background-color-dark: #121212;
+    --ads-sidebar-background-color: #f3f3f2;
+    --ads-sidebar-background-color-dark: #3f3f3f;
+    --ads-listingblock-background-color: #f7f7f8;
+    --ads-listingblock-background-color-dark: #7f7f7f;
+    --ads-listingblock-output-background-color: rgb(0 0 0 / 0.9);
+    --ads-listingblock-output-background-color-dark: #7f7f7f;
+
+    /* Colors for the UI elements */
+
+    --ads-kbd-background-color: #f7f7f7;
+    --ads-kbd-background-color-dark: #bababa;
+    --ads-kbd-color: rgb(0 0 0 / 0.8);
+    --ads-kbd-color-dark: rgb(0 0 0 / 0.8);
+    --ads-keyseq-color: black;
+    --ads-keyseq-color-dark: whitesmoke;
+    --ads-menu-color: #000;
+    --ads-menu-color-dark: #eee;
+
+    /* Colors for the Table of contents */
+
+    --ads-toc-background-color: #f8f8f7;
+    --ads-toc-background-color-dark: #323232;
+    --ads-toc2-background-color: #f8f8f7;
+    --ads-toc2-background-color-dark: #323232;
+
+    /* Colors for the Footer */
+
+    --ads-footer-background-color: rgb(0 0 0 / 0.8);
+    --ads-footer-background-color-dark: rgb(100 100 100 / 0.4);
+
+    /* Colors for Pretty Print */
+
+    --ads-prettyprint-background-color: #f7f7f8;
+    --ads-prettyprint-background-color-dark: #7f7f7f;
+    --ads-prettyprint-list-background-color: none;
+    --ads-prettyprint-list-background-color-dark: none;
+
+    /*  Admonitions: The background color is unused in the base style.
+		It is prepared for a style similar to Apple Calendar with dark/light colors */
+
+    --ads-admonitionblock-background-color: #0085f21a;
+    --ads-admonitionblock-background-color-dark: #0085f21a;
+    --ads-note-color: #197bbd;
+    --ads-note-border-color: #197bbd;
+    --ads-note-background-color: #d4e5f3;
+    --ads-tip-color: #8ea604;
+    --ads-tip-border-color: #8ea604;
+    --ads-tip-background-color: #e7eed6;
+    --ads-warning-color: #f5bb00;
+    --ads-warning-border-color: #f5bb00;
+    --ads-warning-background-color: #fdf2da;
+    --ads-caution-color: #d76a03;
+    --ads-caution-border-color: #d76a03;
+    --ads-caution-background-color: #fae2d4;
+    --ads-important-color: #bf3100;
+    --ads-important-border-color: #bf3100;
+    --ads-important-background-color: #f7d8d0;
+}
+
+html {
+    /* Use the most common ligatures from the body font */
+    font-variant-ligatures: common-ligatures;
+    -moz-font-feature-settings: "liga", "clig";
+    -webkit-font-feature-settings: "liga", "clig";
+    font-feature-settings: "liga", "clig";
+}
+
+@media (prefers-color-scheme: dark) {
+    /* this is how all dark variants are done */
+    body {
+        /* modifying only the colors, the rest remains the same */
+        background-color: var(--ads-background-color-dark);
+        color: var(--ads-color-dark);
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    /* this is how all dark variants are done */
+    body {
+        /* modifying only the colors, the rest remains the same */
+        background-color: var(--ads-background-color);
+        color: var(--ads-color);
+    }
+    .paragraph {
+        color: var(--ads-color);
+    }
+}
+
+/* Unify the weight for headlines */
+h1,
+h2 {
+    font-weight: 700;
+}
+
+h3,
+h4 {
+    font-weight: 600;
+}
+
+h5,
+h6,
+#toctitle,
+.sidebarblock > .content > .title {
+    font-weight: 500;
+}
+
+/* reduce the space between list items */
+li p {
+    margin-bottom: 0em;
+}
+
+/* Keyboard Shortcuts a bit larger and in semi bold */
+kbd {
+    font-size: 0.75em;
+    font-weight: 600;
+}
+
+@media (prefers-color-scheme: light) {
+    .paragraph {
+        color: var(--ads-color);
+    }
+    .content {
+        color: var(--ads-color);
+    }
+}
+
+/*** Lists ***/
+
+@media (prefers-color-scheme: light) {
+    .ulist,
+    .olist,
+    .dlist {
+        color: var(--ads-color);
+    }
+}
+
+/* The .lead text AKA Preamble AKA abstract in medium bold and a bit larger */
+
+.paragraph.lead > p,
+#preamble > .sectionbody > [class="paragraph"]:first-of-type p {
+    font-size: 1.2em; /* .lead should be ~15% bigger than the normal font */
+    font-weight: 500;
+}
+
+/*** A new style for the literal block ***/
+
+@media (prefers-color-scheme: light) {
+    .literalblock pre {
+        color: var(--ads-pre-color);
+    }
+}
+
+/*** A new style for quotes ***/
+
+.quoteblock {
+    margin: 0 1em 1.25em 0em;
+    border-left: 0.5em solid var(--ads-headline-block-color);
+    display: table;
+}
+
+@media (prefers-color-scheme: dark) {
+    .quoteblock {
+        border-left: 0.5em solid var(--ads-headline-block-color-dark);
+    }
+}
+
+.quoteblock:not(.excerpt) > .title {
+    margin-left: 1.15em;
+}
+
+.quoteblock blockquote,
+.quoteblock p {
+    font-family: var(--ads-quote-font);
+    font-style: italic;
+    word-spacing: -0.025em;
+    margin-left: 0.5em;
+}
+
+.quoteblock blockquote::before {
+    display: none;
+}
+
+/*** New Icons for the Admonitions ***/
+
+.admonitionblock td.icon [class^="fa icon-"] {
+    font-size: 2em; /* The icon size, if displayed */
+    line-height: 2;
+    cursor: default;
+}
+
+.admonitionblock td.icon .icon-note::before {
+    content: "\f05a"; /* The font icon for NOTE */
+    color: var(--ads-note-color);
+}
+
+.admonitionblock td.icon .icon-tip::before {
+    content: "\e2ca"; /* The font icon for TIP */
+    color: var(--ads-tip-color);
+}
+
+.admonitionblock td.icon .icon-warning::before {
+    content: "\f0f3"; /* The font icon for WARNING */
+    color: var(--ads-warning-color);
+}
+
+.admonitionblock td.icon .icon-caution::before {
+    content: "\f25a"; /* The font icon for CAUTION */
+    color: var(--ads-caution-color);
+}
+
+.admonitionblock td.icon .icon-important::before {
+    content: "\f256"; /* The font icon for IMPORTANT */
+    color: var(--ads-important-color);
+}
+
+/*** Admonitions Block ***/
+
+.admonitionblock td {
+    vertical-align: middle;
+}
+
+.admonitionblock > table td.content code {
+    color: rgba(0, 0, 0, 0.9);
+}
+
+.admonitionblock.note td.content {
+    border-left: 1px solid var(--ads-note-color);
+}
+
+.admonitionblock.tip td.content {
+    border-left: 1px solid var(--ads-tip-color);
+}
+
+.admonitionblock.warning td.content {
+    border-left: 1px solid var(--ads-warning-color);
+}
+
+.admonitionblock.caution td.content {
+    border-left: 1px solid var(--ads-caution-color);
+}
+
+.admonitionblock.important td.content {
+    border-left: 1px solid var(--ads-important-color);
+}
+
+.admonitionblock.note td.content code {
+    background-color: var(--ads-note-color);
+    margin-right: 0.25em;
+}
+
+.admonitionblock.tip td.content code {
+    background-color: var(--ads-tip-color);
+    margin-right: 0.25em;
+}
+
+.admonitionblock.warning td.content code {
+    background-color: var(--ads-warning-color);
+    margin-right: 0.25em;
+}
+
+.admonitionblock.caution td.content code {
+    background-color: var(--ads-caution-color);
+    margin-right: 0.25em;
+}
+
+.admonitionblock.important td.content code {
+    background-color: var(--ads-important-color);
+    margin-right: 0.25em;
+}
+
+.admonitionblock table {
+    border-radius: 15px;
+}
+
+/*** The @media vivliostyle is used for the PDF View in adoc Studio ***/
+
+@media vivliostyle {
+    p {
+        font-size: 100%;
+    }
+
+    /* Color fix for the left border of a quoteblock */
+    .quoteblock {
+        border-left: 0.5em solid var(--ads-headline-block-color) !important;
+    }
+}
+
+/*** TOC ***/
+
+.toc2 {
+    color: white;
+}
+
+.toc2 li a {
+    color: white;
+    font-weight: bold;
+}
+
+@media (prefers-color-scheme: light) {
+    /* this is how all dark variants are done */
+    .toc2 {
+        color: black;
+    }
+    .toc2 li a {
+        color: black;
+    }
+}
+
+.literalblock pre,
+.listingblock > .content > pre:not(.highlight),
+.listingblock > .content > pre[class="highlight"],
+.listingblock > .content > pre[class^="highlight "] {
+    background: #2f195f;
+}
+
+.quoteblock {
+    border-left: solid 10px white;
+}

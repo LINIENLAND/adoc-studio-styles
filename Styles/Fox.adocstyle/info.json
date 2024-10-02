@@ -1,0 +1,6 @@
+{
+    "name": "Fox",
+    "id": "app.adoc-studio.style.fox",
+    "isHidden": false,
+    "basedOn": "app.adoc-studio.style.base"
+}
